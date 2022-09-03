@@ -3,7 +3,7 @@ package com.company;
 public class Pessoa {
     private int idade;
     private int sexo;
-    private int opcao;
+    private int opcao; // Temperamento
 
     public Pessoa(int i, int s, int o) {
         this.setIdade(i);
@@ -32,6 +32,18 @@ public class Pessoa {
     public void setSexo(int sexo) { this.sexo = sexo; }
 
     public void exibirSexo(){
+        switch (this.getSexo()){
+            case 1:
+                System.out.println("Seu sexo e feminino. ");
+                break;
+            case 2:
+                System.out.println("Seu sexo e masculino.");
+                break;
+            case 3:
+                System.out.println("Seu sexo e outros. ");
+                break;
+        }
+        /*
         if (this.getSexo() == 1){
             System.out.println("Seu sexo e feminino. ");
         } else if (this.getSexo() == 2){
@@ -39,16 +51,30 @@ public class Pessoa {
         } else{
             System.out.println("Seu sexo e outros. ");
         }
+
+         */
     }
 
     public void exibirOpcao(){
+        switch (this.getOpcao()){
+            case 1:
+                System.out.println("Voce e uma pessoa calma.\n");
+                break;
+            case 2:
+                System.out.println("Voca e uma pessoa nervosa.\n");
+                break;
+            case 3:
+                System.out.println("Voce e uma pessoa agressiva.\n");
+                break;
+        }
+        /*
         if (this.getOpcao() == 1){
             System.out.println("Voce e uma pessoa calma.\n");
         } else if (this.getOpcao() == 2){
             System.out.println("Voca e uma pessoa nervosa.\n");
         } else{
             System.out.println("Voce e uma pessoa agressiva.\n");
-        }
+        }*/
     }
 
     public void exibirPessoa(){
