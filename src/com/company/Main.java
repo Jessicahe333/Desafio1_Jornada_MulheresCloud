@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -7,49 +8,105 @@ public class Main {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 
-        Pessoa pessoa1 = new Pessoa();
+        ArrayList<Pessoa> listaPessoa = new ArrayList<Pessoa>();
 
-        // Gravar a idade:
-        System.out.println("Informa sua idade: \n");
-        pessoa1.setIdade(teclado.nextInt());
-        System.out.println("A idade da pessoa e" + pessoa1.getIdade());
+        for (int i=1; i<=3; i++) {
+            System.out.println("Registrar pessoa " + i + ":");
 
-        // Gravar o sexo:
-        System.out.println("Informa seu sexo: \n1 - Feminino; \n2 - Maculino; \n3 - Outros.");
-        int sexo = teclado.nextInt();
-        switch (sexo){
-            case 1:
-                pessoa1.setSexo(sexo);
-                break;
-            case 2:
-                pessoa1.setSexo(sexo);
-                break;
-            case 3:
-                pessoa1.setSexo(sexo);
-                break;
-            default:
-                pessoa1.setSexo(3);
+            // Gravar a idade:
+            int idade;
+            do {
+                System.out.println("Informa sua idade:");
+                idade = teclado.nextInt();
+            } while (idade > 150);
+
+
+            // Gravar o sexo:
+            int sexo;
+            do {
+                System.out.println("Informa seu sexo: 1 - Feminino; 2 - Maculino; 3 - Outros.");
+                sexo = teclado.nextInt();
+            } while (sexo > 3);
+
+            // Gravar a opção:
+            int opcao;
+            do {
+                System.out.println("Informa seu status: 1 - Calma; 2 - Nervosa; 3 - Agressiva.");
+                opcao = teclado.nextInt();
+            } while (opcao > 3);
+
+
+            // Salvar uma nova pessoa:
+            Pessoa p = new Pessoa(idade, sexo, opcao);
+            listaPessoa.add(p);
+
+            // Exibir dados da pessoa:
+            System.out.println("Pessoa " + i + ": ");
+            p.exibirPessoa();
         }
-        System.out.println("Seu sexo e " + pessoa1.getSexo());
 
-        // Gravar a opção:
-        System.out.println("Informa seu status: \n1 - Calma; \n2 - Nervosa; \n3 - Agressiva.");
-        int opcao = teclado.nextInt();
-        switch (opcao){
-            case 1:
-                pessoa1.setOpcao(opcao);
-                break;
-            case 2:
-                pessoa1.setOpcao(opcao);
-                break;
-            case 3:
-                pessoa1.setOpcao(opcao);
-                break;
-            default:
-                pessoa1.setOpcao(3);
+        // Numero de pessoas sao calmas:
+        int calmas = 0;
+        for (int i=0; i < listaPessoa.size(); i++){
+            if (listaPessoa.get(i).getOpcao() == 1){
+                calmas++;
+            }
         }
-        System.out.println("Sua opcao e " + pessoa1.getOpcao());
+        System.out.println(calmas + " sao pessoas calmas.");
+
+        // Numero de mulheres nervosas:
+        int mNervosas = 0;
+        for (int i=0; i < listaPessoa.size(); i++){
+            if (listaPessoa.get(i).getSexo()==1 && listaPessoa.get(i).getOpcao()==2){
+                mNervosas++;
+            }
+        }
+        System.out.println(mNervosas + " sao mulheres nervosas.");
+
+        // Numero de homens agressivos:
+        int hAgressivos = 0;
+        for (int i=0; i < listaPessoa.size(); i++){
+            if (listaPessoa.get(i).getSexo()==1 && listaPessoa.get(i).getOpcao()==2){
+                hAgressivos++;
+            }
+        }
+        System.out.println(hAgressivos + " sao homens agressivos.");
+
+        // Numero de outros calmos:
+        int oCalmos = 0;
+        for (int i=0; i < listaPessoa.size(); i++){
+            if (listaPessoa.get(i).getSexo()==3 && listaPessoa.get(i).getOpcao()==1){
+                oCalmos++;
+            }
+        }
+        System.out.println(oCalmos + " sao outros calmos.");
+
+        // Numero de pessoas nervosas com mais de 40 anos:
+        int n40 = 0;
+        for (int i=0; i < listaPessoa.size(); i++){
+            if (listaPessoa.get(i).getIdade()>=40 && listaPessoa.get(i).getOpcao()==2){
+                n40++;
+            }
+        }
+        System.out.println(n40 + " sao pessoas nervosa com mais de 40 anos.");
+
+        // Numero de pessoas calmas com menos de 18 anos:
+        int c18 = 0;
+        for (int i=0; i < listaPessoa.size(); i++){
+            if (listaPessoa.get(i).getIdade()<18 && listaPessoa.get(i).getOpcao()==1){
+                c18++;
+            }
+        }
+        System.out.println(c18 + " sao pessoas calmas com menos de 18 anos.");
+
+        /*
+        for (Pessoa i: listaPessoa){
+            System.out.print(i);
+        }
+         */
 
         teclado.close();
+
+
     }
 }
